@@ -1,7 +1,7 @@
 'use client' 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, PanelsTopLeft, MessageSquareWarning, Ban, UserCog, LogOut } from 'lucide-react'
+import { LayoutDashboard, PanelsTopLeft, MessageSquareWarning, Ban, UserCog, LogOut, User } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 import Cookies from 'js-cookie'
 import {toast, Toaster} from "sonner";
@@ -9,7 +9,8 @@ const links = [
   { id: 1, name: 'Dashboard', link: '/dashboard', icon: <PanelsTopLeft /> },
   { id: 2, name: 'Reports', link: '/dashboard/reports', icon: <MessageSquareWarning/> },
   { id: 3, name: 'Spam', link: '/dashboard/spam', icon: <Ban/>},
-  { id: 4, name: 'Settings', link: '/dashboard/settings', icon: <UserCog/>}
+  { id: 4, name: "Register", link: '/dashboard/register', icon: <User/>},
+  { id: 5, name: 'Settings', link: '/dashboard/settings', icon: <UserCog/>}
 ]
 
 
