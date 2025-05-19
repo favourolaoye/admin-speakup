@@ -38,7 +38,7 @@ export default function Tab() {
   const getValue = (valueKey) => {
   if (valueKey === "report") return report.length;
   if (valueKey === "spam") return spamData.length;
-  if (valueKey === "student") return students.length;
+  if (valueKey === "students") return students.length;
   return;
 };
   return (

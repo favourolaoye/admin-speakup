@@ -2,7 +2,8 @@
 
 import { useAuthStore } from '@/store/authStore'; 
 import moment from 'moment';
-
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 export default function Page() {
   // Define a User type if not already defined
   type User = {
@@ -11,11 +12,23 @@ export default function Page() {
     createdAt: string | Date;
     // add other fields as needed
   };
+  const router = useRouter();
 
   const user = useAuthStore((state) => state.user) as unknown as User;
+  const setUser = useAuthStore((state) => state.setUser);
+  const setToken = useAuthStore((state) => state.setToken);
 
   if (!user) return <div className="p-6 text-center">Loading...</div>
 
+  const handleLogout = () => {
+    setUser(null);
+    setToken(null);
+    Cookies.remove('token');
+    Cookies.remove('user');
+    setTimeout(() => {
+      router.push("/login");
+    })
+  }
   return (
     <div className="h-full py-10 px-4">
       <div className="max-w-2xl mx-auto p-8">
@@ -54,7 +67,7 @@ export default function Page() {
         </div>
 
         <div className="mt-8 flex justify-end">
-          <button className="bg-red-200 text-red-400 px-4 font-semibold py-2 rounded-md">
+          <button className="bg-red-200 text-red-400 px-4 font-semibold py-2 rounded-md" onClick={handleLogout}>
             Logout
           </button>
         </div>

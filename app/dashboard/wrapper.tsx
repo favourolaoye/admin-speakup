@@ -10,7 +10,7 @@ export default function Wrapper({ children }: { children: React.ReactNode }) {
     const queryClient = new QueryClient();
     // const user = useAuthStore((state) => state.user)
     const setUser = useAuthStore((state) => state.setUser)
-
+    const setStudent = useAuthStore((state) => state.setStudent);
     useEffect(() => {
         const storedUser = Cookies.get('user');
         if (storedUser) {

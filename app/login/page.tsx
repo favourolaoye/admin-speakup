@@ -14,10 +14,9 @@ export default function Login() {
   const setUser = useAuthStore((state) => state.setUser);
   const setToken = useAuthStore((state) => state.setToken);
   const setLoading = useAuthStore((state) => state.setLoading);
-  const error = useAuthStore((state) => state.error);
   const setError = useAuthStore((state) => state.setError);
   const router = useRouter();
-  
+
   useEffect(() => {
     const guy = Cookies.get('token');
     if (guy) {
@@ -41,8 +40,10 @@ export default function Login() {
       setError(msg);
       toast.success("auth success");
       setLoading(false);
-      router.push('/dashboard');
 
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 1000)
     } catch (error: any) {
       console.error('Login failed', error);
       let message = error?.response?.data?.msg;
