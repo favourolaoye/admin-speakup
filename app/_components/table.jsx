@@ -25,9 +25,8 @@ export default function Table() {
     const deleteOne = async (id) => {
         try {
             const response = await axios.delete(`https://speakup-api-v2.onrender.com/api/report/${id}`);
-             const { msg, error} = response.data;
+             const { msg } = response.data;
              toast.success(msg);
-             toast.error(msg)
         } catch (error) {
             toast.error("Error deleting report:", error.response?.data?.msg || error.message);
             console.error("Error deleting report:", error.response?.data?.msg || error.message);
